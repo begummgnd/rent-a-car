@@ -1,12 +1,13 @@
 package com.app.rentacar.service.impl;
 
 import com.app.rentacar.dto.BrandDto;
-import com.app.rentacar.model.Brand;
+import com.app.rentacar.entity.Brand;
 import com.app.rentacar.repository.BrandRepository;
 import com.app.rentacar.service.BrandService;
 import com.app.rentacar.service.mapper.BrandMapper;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -29,15 +30,15 @@ public class BrandServiceImpl implements BrandService {
         List<Brand> brands = brandRepository.findAll(spec);
         List<BrandDto> brandDtos = brands
                                     .stream()
-                                    .map(brand -> brandMapper.toDto(brand))
+                                    .map(brand -> brandMapper.entityToDto(brand))
                                     .collect(Collectors.toList());
         return brandDtos;
     }
 
     @Override
     public BrandDto save(BrandDto brandDto){
-        Brand brand = brandRepository.save(brandMapper.toEntity(brandDto));
-        brandDto = brandMapper.toDto(brand);
+        Brand brand = brandRepository.save(brandMapper.dtoToEntity(brandDto));
+        brandDto = brandMapper.entityToDto(brand);
         return brandDto;
     }
 

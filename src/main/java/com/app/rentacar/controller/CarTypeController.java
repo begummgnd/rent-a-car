@@ -1,7 +1,8 @@
 package com.app.rentacar.controller;
 
+import com.app.rentacar.constant.ApiConstants;
 import com.app.rentacar.dto.CarTypeDto;
-import com.app.rentacar.model.CarType;
+import com.app.rentacar.entity.CarType;
 import com.app.rentacar.service.CarTypeService;
 import com.app.rentacar.specification.FiltersSpecification;
 import com.app.rentacar.specification.criteria.SearchCriteria;
@@ -17,7 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping(ApiConstants.CAR_TYPE)
 public class CarTypeController {
 
     private final CarTypeService carTypeService;
@@ -29,7 +30,7 @@ public class CarTypeController {
         this.carTypeFiltersSpecification = carTypeFiltersSpecification;
     }
 
-    @GetMapping("/car-types")
+    @GetMapping
     public ResponseEntity<List<CarTypeDto>> getAllCarTypes(@RequestParam(value = "search" , required = false) String search){
       List<SearchCriteria> criteria = new ArrayList<>();
         try{
@@ -43,33 +44,30 @@ public class CarTypeController {
             }
 
             Specification<CarType> spec = carTypeFiltersSpecification.createSpecification(criteria);
-            List<CarTypeDto> carTypeDtos = carTypeService.getAll(spec);
-            return new ResponseEntity<>(carTypeDtos, HttpStatus.OK);
+            return new ResponseEntity<>(carTypeService.getAll(spec), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PostMapping("/car-type")
+    @PostMapping
     public ResponseEntity<CarTypeDto> createCarType(@RequestBody CarTypeDto carTypeDto){
         try{
-            carTypeDto = carTypeService.save(carTypeDto);
-            return new ResponseEntity<>(carTypeDto, HttpStatus.CREATED);
+            return new ResponseEntity<>(carTypeService.save(carTypeDto), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
-    @PutMapping("/car-type")
+    @PutMapping
     public ResponseEntity<CarTypeDto> updateCarType(@RequestBody CarTypeDto carTypeDto){
         try{
-            carTypeDto = carTypeService.update(carTypeDto);
-            return new ResponseEntity<>(carTypeDto, HttpStatus.OK);
+            return new ResponseEntity<>(carTypeService.update(carTypeDto), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-    @DeleteMapping("/car-type/{id}")
+    @DeleteMapping(ApiConstants.ID)
     public ResponseEntity<Void> deleteCarType(@PathVariable("id") UUID id){
         try{
             carTypeService.delete(id);

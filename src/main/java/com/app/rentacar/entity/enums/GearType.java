@@ -1,4 +1,4 @@
-package com.app.rentacar.model.enums;
+package com.app.rentacar.entity.enums;
 
 public enum GearType {
     MANUAL,AUTOMATIC
