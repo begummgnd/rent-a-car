@@ -1,7 +1,8 @@
 package com.app.rentacar.controller;
 
+import com.app.rentacar.constant.ApiConstants;
 import com.app.rentacar.dto.ModelDto;
-import com.app.rentacar.model.Model;
+import com.app.rentacar.entity.Model;
 import com.app.rentacar.service.ModelService;
 import com.app.rentacar.specification.FiltersSpecification;
 import com.app.rentacar.specification.criteria.SearchCriteria;
@@ -17,7 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping(ApiConstants.MODEL)
 public class ModelController {
 
     private final ModelService modelService;
@@ -29,7 +30,7 @@ public class ModelController {
         this.modelFiltersSpecification = modelFiltersSpecification;
     }
 
-    @GetMapping("/models")
+    @GetMapping
     public ResponseEntity<List<ModelDto>> getAllModels(@RequestParam(value = "search" , required = false) String search){
         List<SearchCriteria> criteria = new ArrayList<>();
         try{
@@ -42,33 +43,30 @@ public class ModelController {
                 }
             }
             Specification<Model> spec = modelFiltersSpecification.createSpecification(criteria);
-            List<ModelDto> modelDtos = modelService.getAll(spec);
-            return new ResponseEntity<>(modelDtos, HttpStatus.OK);
+            return new ResponseEntity<>(modelService.getAll(spec), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PostMapping("/model")
+    @PostMapping
     public ResponseEntity<ModelDto> createModel(@RequestBody ModelDto modelDto){
         try{
-            modelDto = modelService.save(modelDto);
-            return new ResponseEntity<>(modelDto, HttpStatus.CREATED);
+            return new ResponseEntity<>(modelService.save(modelDto), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
-    @PutMapping("/model")
+    @PutMapping
     public ResponseEntity<ModelDto> updateModel(@RequestBody ModelDto modelDto){
         try{
-            modelDto = modelService.update(modelDto);
-            return new ResponseEntity<>(modelDto, HttpStatus.OK);
+            return new ResponseEntity<>(modelService.update(modelDto), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-    @DeleteMapping("/model/{id}")
+    @DeleteMapping(ApiConstants.ID)
     public ResponseEntity<Void> deleteModel(@PathVariable("id") UUID id){
         try{
             modelService.delete(id);

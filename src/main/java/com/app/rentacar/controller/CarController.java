@@ -1,7 +1,8 @@
 package com.app.rentacar.controller;
 
+import com.app.rentacar.constant.ApiConstants;
 import com.app.rentacar.dto.CarDto;
-import com.app.rentacar.model.Car;
+import com.app.rentacar.entity.Car;
 import com.app.rentacar.service.CarService;
 import com.app.rentacar.specification.CarSpecification;
 import com.app.rentacar.specification.criteria.SearchCriteria;
@@ -17,7 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping(ApiConstants.CAR)
 public class CarController {
 
     private final CarService carService;
@@ -29,7 +30,7 @@ public class CarController {
         this.carSpecification = carSpecification;
     }
 
-    @GetMapping("/cars")
+    @GetMapping
     public ResponseEntity<List<CarDto>> getAllCars(@RequestParam(value = "search" , required = false) String search){
         List<SearchCriteria> criteria = new ArrayList<>();
         try{
@@ -42,35 +43,32 @@ public class CarController {
                 }
             }
             Specification<Car> spec = carSpecification.createSpecification(criteria);
-            List<CarDto> carDtos = carService.getAll(spec);
-            return new ResponseEntity<>(carDtos, HttpStatus.OK);
+            return new ResponseEntity<>(carService.getAll(spec), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PostMapping("/car")
+    @PostMapping
     public ResponseEntity<CarDto> createCar(@RequestBody CarDto carDto){
         try{
-            carDto = carService.save(carDto);
-            return new ResponseEntity<>(carDto, HttpStatus.CREATED);
+            return new ResponseEntity<>(carService.save(carDto), HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
-    @PutMapping("/car")
+    @PutMapping
     public ResponseEntity<CarDto> updateCar(@RequestBody CarDto carDto){
         try{
-            carDto = carService.update(carDto);
-            return new ResponseEntity<>(carDto, HttpStatus.OK);
+            return new ResponseEntity<>(carService.update(carDto), HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 
-    @DeleteMapping("/car/{id}")
-    public ResponseEntity<Void> updateCar(@PathVariable UUID id){
+    @DeleteMapping(ApiConstants.ID)
+    public ResponseEntity<Void> deleteCar(@PathVariable UUID id){
         try{
             carService.delete(id);
             return new ResponseEntity<>(HttpStatus.OK);

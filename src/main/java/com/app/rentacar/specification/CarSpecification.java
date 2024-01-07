@@ -1,8 +1,8 @@
 package com.app.rentacar.specification;
 
-import com.app.rentacar.model.Car;
-import com.app.rentacar.model.enums.FuelType;
-import com.app.rentacar.model.enums.GearType;
+import com.app.rentacar.entity.Car;
+import com.app.rentacar.entity.enums.FuelType;
+import com.app.rentacar.entity.enums.GearType;
 import com.app.rentacar.specification.criteria.SearchCriteria;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;

@@ -1,15 +1,16 @@
 package com.app.rentacar.dto;
 
-import com.app.rentacar.model.enums.FuelType;
-import com.app.rentacar.model.enums.GearType;
+import com.app.rentacar.entity.enums.FuelType;
+import com.app.rentacar.entity.enums.GearType;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.UUID;
 @Data
-public class CarDto {
-
-    private UUID id;
-
+@Builder
+@AllArgsConstructor
+public class CarDto extends BaseDto{
     private String color;
 
     private FuelType fuelType;

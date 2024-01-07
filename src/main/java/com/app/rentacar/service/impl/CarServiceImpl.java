@@ -1,7 +1,7 @@
 package com.app.rentacar.service.impl;
 
 import com.app.rentacar.dto.CarDto;
-import com.app.rentacar.model.Car;
+import com.app.rentacar.entity.Car;
 import com.app.rentacar.repository.CarRepository;
 import com.app.rentacar.service.CarService;
 import com.app.rentacar.service.mapper.CarMapper;
@@ -29,15 +29,15 @@ public class CarServiceImpl implements CarService {
         List<Car> cars = carRepository.findAll(spec);
         List<CarDto> carDtos = cars
                                 .stream()
-                                .map(car -> carMapper.toDto(car))
+                                .map(car -> carMapper.entityToDto(car))
                                 .collect(Collectors.toList());
         return carDtos;
     }
 
     @Override
     public CarDto save(CarDto carDto) {
-        Car car = carRepository.save(carMapper.toEntity(carDto));
-        carDto = carMapper.toDto(car);
+        Car car = carRepository.save(carMapper.dtoToEntity(carDto));
+        carDto = carMapper.entityToDto(car);
         return carDto;
     }
 
