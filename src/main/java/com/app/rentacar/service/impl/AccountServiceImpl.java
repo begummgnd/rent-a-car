@@ -5,10 +5,12 @@ import com.app.rentacar.repository.AccountRepository;
 import com.app.rentacar.service.AccountService;
 import com.app.rentacar.service.mapper.AccountMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository repository;
@@ -20,6 +22,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    @Transactional
     public AccountDto createAccount(AccountDto dto) {
         return null;
     }
