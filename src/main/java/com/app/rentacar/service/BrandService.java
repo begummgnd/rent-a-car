@@ -1,7 +1,7 @@
 package com.app.rentacar.service;
 
-import com.app.rentacar.dto.BrandDto;
-import com.app.rentacar.entity.Brand;
+import com.app.rentacar.dto.car.BrandDto;
+import com.app.rentacar.entity.car.Brand;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;

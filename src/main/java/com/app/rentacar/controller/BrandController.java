@@ -1,8 +1,8 @@
 package com.app.rentacar.controller;
 
 import com.app.rentacar.constant.ApiConstants;
-import com.app.rentacar.dto.BrandDto;
-import com.app.rentacar.entity.Brand;
+import com.app.rentacar.dto.car.BrandDto;
+import com.app.rentacar.entity.car.Brand;
 import com.app.rentacar.service.BrandService;
 import com.app.rentacar.specification.FiltersSpecification;
 import com.app.rentacar.specification.criteria.SearchCriteria;

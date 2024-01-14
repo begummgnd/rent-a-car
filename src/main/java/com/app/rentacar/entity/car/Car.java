@@ -1,5 +1,6 @@
-package com.app.rentacar.entity;
+package com.app.rentacar.entity.car;
 
+import com.app.rentacar.entity.base.BaseEntity;
 import com.app.rentacar.entity.enums.FuelType;
 import com.app.rentacar.entity.enums.GearType;
 import jakarta.persistence.*;
@@ -10,7 +11,6 @@ import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-@Table(name = "car")
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor

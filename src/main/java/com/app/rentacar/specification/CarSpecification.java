@@ -1,6 +1,6 @@
 package com.app.rentacar.specification;
 
-import com.app.rentacar.entity.Car;
+import com.app.rentacar.entity.car.Car;
 import com.app.rentacar.entity.enums.FuelType;
 import com.app.rentacar.entity.enums.GearType;
 import com.app.rentacar.specification.criteria.SearchCriteria;

@@ -1,16 +1,16 @@
-package com.app.rentacar.dto;
+package com.app.rentacar.dto.car;
 
+import com.app.rentacar.dto.base.BaseDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
 import java.util.Set;
-import java.util.UUID;
 
 @Data
 @Builder
 @AllArgsConstructor
-public class CarTypeDto extends BaseDto{
+public class CarTypeDto extends BaseDto {
     private String type;
 
     private Set<CarDto> cars;

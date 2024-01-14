@@ -1,7 +1,7 @@
 package com.app.rentacar.service.mapper;
 
-import com.app.rentacar.dto.CarDto;
-import com.app.rentacar.entity.Car;
+import com.app.rentacar.dto.car.CarDto;
+import com.app.rentacar.entity.car.Car;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

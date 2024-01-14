@@ -1,7 +1,7 @@
 package com.app.rentacar.service.mapper;
 
-import com.app.rentacar.dto.BaseDto;
-import com.app.rentacar.entity.BaseEntity;
+import com.app.rentacar.dto.base.BaseDto;
+import com.app.rentacar.entity.base.BaseEntity;
 
 import java.util.List;
 
