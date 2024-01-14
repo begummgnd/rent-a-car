@@ -1,4 +1,4 @@
-package com.app.rentacar.entity;
+package com.app.rentacar.entity.base;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

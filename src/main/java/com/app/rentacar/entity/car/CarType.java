@@ -1,5 +1,6 @@
-package com.app.rentacar.entity;
+package com.app.rentacar.entity.car;
 
+import com.app.rentacar.entity.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +11,6 @@ import org.hibernate.annotations.Where;
 
 import java.util.Set;
 
-@Table(name = "car-type")
 @Entity
 @Getter
 @Setter

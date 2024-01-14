@@ -1,7 +1,7 @@
 package com.app.rentacar.service.impl;
 
-import com.app.rentacar.dto.CarDto;
-import com.app.rentacar.entity.Car;
+import com.app.rentacar.dto.car.CarDto;
+import com.app.rentacar.entity.car.Car;
 import com.app.rentacar.repository.CarRepository;
 import com.app.rentacar.service.CarService;
 import com.app.rentacar.service.mapper.CarMapper;

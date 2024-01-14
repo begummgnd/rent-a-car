@@ -1,20 +1,19 @@
-package com.app.rentacar.dto;
+package com.app.rentacar.dto.base;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class BaseDto {
+public abstract class BaseDto implements Serializable {
 
     private UUID id;
     private Long version;
