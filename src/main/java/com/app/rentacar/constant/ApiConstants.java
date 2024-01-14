@@ -14,4 +14,6 @@ public class ApiConstants {
     public static final String MODEL = "/models";
 
     public static final String ID = "/{id}";
+    public static final String ACCOUNT = "/accounts";
+    public static final String CUSTOMER = "/customers";
 }
